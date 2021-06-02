@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+	  <a class="navbar-brand my-0 py-0" href="/">
+		  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9CMZK-cREn6UPTLshWBcKVhFFeQ85OXGHZtTnsLDvKDWhaYsbadby8OXVpbQGFRj9MrU&usqp=CAU" height="50">
+	  </a>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			  <li class="nav-item">
+				  <a class="nav-link active" aria-current="page" href="/places">Places</a>
+			  </li>
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Types of Places</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<li><a class="dropdown-item" href="#">Cultural/Arquitecture</a></li>
+					<li><a class="dropdown-item" href="#">Walking friendly</a></li>
+					<li><a class="dropdown-item" href="#">Food/Cafe</a></li>
+					<li><a class="dropdown-item" href="#">Iglesias</a></li>
+					<li><a class="dropdown-item" href="#">Parks</a></li>
+					<li><a class="dropdown-item" href="#">Shopping</a></li>
+					<li><hr class="dropdown-divider"></li>
+					<li><a class="dropdown-item" href="#">All</a></li>
+				</ul>
+			  </li>
+			  
+			  <% if(user) { %>
+				  <li class="nav-item">
+					  <a class="nav-link" aria-current="page" href="/places/new">Add Place</a>
+				  </li>
+				  <li class="nav-item">
+					  <a class="nav-link" aria-current="page" href="/logout">Log Out</a>
+				  </li>
+			  <% } else { %>
+				  <li class="nav-item">
+					  <a class="nav-link" aria-current="page" href="/login">Log In</a>
+				  </li>
+				  <li class="nav-item">
+					  <a class="nav-link" aria-current="page" href="/signup">Sign Up</a>
+				  </li>
+			  <% } %>
+		  </ul>
+		  
+		  <form class="d-flex" action="/places/search" method="GET">
+			  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="term">
+			  <button class="btn btn-outline-success" type="submit">Search</button>
+		  </form>
+	  </div>
+	</div>
+</nav>

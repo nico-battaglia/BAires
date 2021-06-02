@@ -1,0 +1,27 @@
+<%- include('./partials/header'); %> <!--  partial included here -->
+<%- include ("partials/navbar") %>
+
+<div class="container-lg my-4">
+	<h1>Sign Up</h1>
+	<form action="/signup" method="POST">
+		<div class="mb-3">
+			<label for="email" class="form-label">Email address</label>
+			<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+			<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+		</div>
+		
+		<div class="mb-3">
+			<label for="username" class="form-label">Username</label>
+			<input type="text" class="form-control" name="username" id="username">
+		</div>
+		
+		<div class="mb-3">
+			<label for="password" class="form-label">Password</label>
+			<input type="password" class="form-control" name="password" id="password">
+		</div>
+		
+		<button type="submit" class="btn btn-primary">Sign Up</button>
+	</form>
+</div>
+
+<%- include('./partials/footer'); %> <!--  partial included here -->

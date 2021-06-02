@@ -1,0 +1,42 @@
+/* *{
+	border: 1px solid black;
+}
+ */
+
+.card-img{
+	width:100%;
+	height:18rem;
+	object-fit:cover;
+}
+
+.index-bgImage{
+	background-image: url('https://c0.wallpaperflare.com/preview/901/234/383/argentina-buenos-aires-9-de-julio-avenida.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:top center;
+	height:100vh;
+	overflow: hidden;
+}
+
+.index-bgImage2{
+	background-image: url('https://turismo.buenosaires.gob.ar/sites/turismo/files/aerea_9_julio_as_2016_obelisco.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:left center;
+	height:100vh;
+	overflow: hidden;
+}
+
+.img-fluid{
+	max-height: 80vh;
+	}
+
+.card-text{
+	white-space: pre-wrap;
+}
+
+.form-inline {
+  	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}

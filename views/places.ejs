@@ -1,0 +1,23 @@
+<%- include('./partials/header'); %> <!--  partial included here -->
+
+<%- include ("partials/navbar") %>
+
+<div class="container-lg my-4">
+	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+		<% places.forEach((place)=>{ %>
+			<div class="col">
+				<a href="/places/<%= place._id %>" class="text-decoration-none text-reset">
+					<div class="card h-100">
+						<img src="<%=place.imagen%>" class="card-img-top card-img" alt="picture of place">
+						<div class="card-body">
+							<h5 class="card-title"><%=place.lugar%></h5>
+							<p class="card-text"><%=place.descripcion%></p>
+						</div>
+					</div>
+				</a>
+			</div>
+		<% }) %>
+	</div>	
+</div>
+
+<%- include('./partials/footer'); %> <!--  partial included here -->

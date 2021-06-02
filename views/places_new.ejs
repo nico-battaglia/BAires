@@ -1,0 +1,61 @@
+<%- include('./partials/header'); %> <!--  partial included here -->
+<%- include ("partials/navbar") %>
+
+<!-- <div class="index-bgImage2"> -->
+
+<div class="container my-4">
+	<div class="row">
+		<div class="col">
+			<h3 class="border-bottom border-dark pb-1">Add New Place</h3>
+			<form action="/places" method="POST">
+				<div class="row form-group m-3">
+					<label for="imagen">Link to Image</label>
+					<input type="text" class="form-control text-center" name="imagen" placeholder="https://www.somePlace/someImage.jpg" autofocus required>
+				</div>
+				<div class="row form-group m-3">
+					<label for="lugar">Place</label>
+					<input type="text" class="form-control text-center" name="lugar" placeholder="Name of the place" required>
+				</div>
+				<div class="row form-group m-3 ">
+					<label>Type of Place</label>
+					<div class="col text-center">
+							<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Culture/Arquitecture" name="typeOfPlace">
+							<label class="form-check-label" for="inlineCheckbox1">Culture/Arquitecture</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Walking Friendly" name="typeOfPlace">
+							<label class="form-check-label" for="inlineCheckbox2">Walking Friendly</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Food/Cafe" name="typeOfPlace">
+							<label class="form-check-label" for="inlineCheckbox3">Food/Cafe</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="Church" name="typeOfPlace">
+							<label class="form-check-label" for="inlineCheckbox4">Church</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="Park" name="typeOfPlace">
+							<label class="form-check-label" for="inlineCheckbox5">Park</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="Shopping" name="typeOfPlace">
+							<label class="form-check-label" for="inlineCheckbox6">Shopping</label>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group m-3">
+					<label for="descripcion">Description</label>
+					<textarea type="text" class="form-control text-center" name="descripcion" placeholder="Describe something about the place and/or share tips and recomendations" rows="3" required></textarea>
+				</div>
+				<div class="row form-group m-3">
+					<button type="submit" class="btn btn-success">Add</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- </div> -->
+<%- include('./partials/footer'); %> <!--  partial included here -->
