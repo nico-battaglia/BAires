@@ -2,6 +2,9 @@
 	border: 1px solid black;
 }
  */
+.opacity{
+  background: rgba(205, 221, 237, 0.8);
+}
 
 .card-img{
 	width:100%;
