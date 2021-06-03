@@ -12,7 +12,13 @@ const LocalStrategy = require("passport-local").Strategy;
 const expressSession = require("express-session");
 
 // Config import
-const config = require("./config")
+let config;
+try{
+	config = require("./config");
+} catch(e){
+	console.log("Could not import 'config.js'. Maybe NOT working locally?");
+	console.log(e);
+}
 
 // Route Imports
 const placesRoutes = require("./routes/places");
@@ -31,7 +37,11 @@ const authRoutes = require("./routes/auth");
 // CONFIG
 //====================================================
 // DB settings, Connection
-mongoose.connect(config.db.connection, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+try{
+	mongoose.connect(config.db.connection, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});	
+} catch(err){
+	mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+}
 
 // Model Imports
 const Place = require("./models/place");
@@ -47,7 +57,7 @@ app.use(methodOverride('_method')) // override with POST having ?_method=DELETE
 
 // Express Session Config
 app.use(expressSession({
-	secret:"qwepoiwqpoeisalksjdalksjdaljhfdbjdhfgmxcnmncv65sd6s54d69ds8f7",
+	secret: process.env.ES_SECRET || config.expressSession.secret,
 	resave: false,
 	saveUninitialized: false
 }));
@@ -74,8 +84,9 @@ app.use("/places/:id/comments", commentsRoutes);
 //====================================================
 // LISTEN
 //====================================================
-app.listen(3000, ()=> console.log("Listening on port 3000")); 
-
+app.listen(process.env.PORT || 3000, ()=> {
+	console.log("BAires is running...");
+});
 
 // Killing rogue process:
 // sudo netstat -ltnp | grep -w ":3000"
