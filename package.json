@@ -4,7 +4,7 @@
   "description": "app of interesting sites to visit in Buenos Aires",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "NicoBattaglia",
   "license": "ISC",
