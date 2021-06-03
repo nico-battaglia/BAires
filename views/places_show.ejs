@@ -16,16 +16,18 @@
 			</div>
 		</div>
 	</div>
-	<div class="row justify-content-end">
-		<div class="col-md-4 form-inline text-end m-1 ">
-			<a href="/places/<%=place._id%>/edit" class="w-25 mx-1">
-				<button class="btn btn-outline-primary btn-sm w-100">Edit</button>
-			</a>	
-			<form action="/places/<%=place._id%>?_method=DELETE" method="POST"  class="w-25">
-				<button type="submit" class="btn btn-outline-danger btn-sm w-100">Delete</button>
-			</form>	
+	<% if(user && user.username===place.owner.username) {%>
+		<div class="row justify-content-end">
+			<div class="col-md-4 form-inline text-end m-1 ">
+				<a href="/places/<%=place._id%>/edit" class="w-25 mx-1">
+					<button class="btn btn-outline-primary btn-sm w-100">Edit</button>
+				</a>	
+				<form action="/places/<%=place._id%>?_method=DELETE" method="POST"  class="w-25">
+					<button type="submit" class="btn btn-outline-danger btn-sm w-100">Delete</button>
+				</form>	
+			</div>
 		</div>
-    </div>
+	<% } %>
 	
 
 	<div class="row mt-3">
@@ -42,16 +44,17 @@
 				<%= comment.user.username %>
 			</div>
 			<div class="col-2 my-auto d-flex flex-wrap justify-content-center border-end">
+			<% if(user && user.username===comment.user.username) { %>
 				<a class="btn btn-sm btn-success w-75 p-0 my-1" 
 				   href="/places/<%=place._id%>/comments/<%=comment._id%>/edit">
 					Edit
 				</a>
-				<form class="w-75 my-0" 
-					  action="/places/<%= place._id %>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+				<form class="w-75 my-0" action="/places/<%= place._id %>/comments/<%= comment._id%>?_method=DELETE" method="POST">
 					<button class="btn btn-sm btn-danger w-100 p-0">
 						Delete
 					</button>
 				</form>
+			<% } %>
 			</div>
 			<div class="col-8 my-auto">
 				<%= comment.text %>
