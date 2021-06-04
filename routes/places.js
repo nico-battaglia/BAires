@@ -53,6 +53,17 @@ router.get("/search", async (req, res)=>{
 	}
 })
 
+// Show Places by Type of Place
+router.get("/typeOfPlace/:type", async (req, res)=>{
+	const validTypes=["Culture-Architecture", "Walk-friendly", "Food-Cafe", "Church", "Park", "Shopping"];
+	if(validTypes.includes(req.params.type)){
+		const places = await Place.find({typeOfPlace: req.params.type}).exec();
+		res.render("places", {places});
+	} else {
+		res.send("Wrong type of place");
+	}
+	})
+
 // Show Individual Place
 router.get("/:id", async (req,res)=>{
 	try{
