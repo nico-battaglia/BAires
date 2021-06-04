@@ -10,6 +10,7 @@ const methodOverride = require('method-override');
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const expressSession = require("express-session");
+const flash = require('connect-flash');
 
 // Config import
 let config;
@@ -61,6 +62,9 @@ app.use(expressSession({
 	resave: false,
 	saveUninitialized: false
 }));
+
+// Connect-Flash
+app.use(flash());
 
 // Passpor Config
 app.use(passport.initialize());
