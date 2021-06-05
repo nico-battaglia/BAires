@@ -21,7 +21,7 @@ router.get("/new", isLoggedIn, (req,res)=>{
 })
 
 // ADD NEW Place - Update DB
-router.post("/", isLoggedIn, (req,res)=>{
+router.post("/", isLoggedIn, async (req,res)=>{
 	const newPlace = {
 		imagen: req.body.imagen,
 		lugar: req.body.lugar,
@@ -32,10 +32,14 @@ router.post("/", isLoggedIn, (req,res)=>{
 			username: req.user.username
 		}
 	};
-
-	Place.create(newPlace)
-	.then((place)=>{ res.redirect(`/places/${place._id}`) })
-	.catch((err)=>{ res.send(err) })
+	try {
+		const place = await Place.create(newPlace);
+		res.redirect(`/places/${place._id}`);
+	} catch(err){
+		req.flash("error","Something went wrong accesing the database. Could not create the place. Please try again");
+		console.log(err);
+		res.redirect("/places");
+	}
 });
 
 // SEARCH (this route before "/:id" or not going to work. Will treat the search like an id)
@@ -60,7 +64,8 @@ router.get("/typeOfPlace/:type", async (req, res)=>{
 		const places = await Place.find({typeOfPlace: req.params.type}).exec();
 		res.render("places", {places});
 	} else {
-		res.send("Wrong type of place");
+		req.flash("error", "Wrong type of place");
+		res.redirect("back");
 	}
 	})
 
@@ -84,7 +89,7 @@ router.get("/:id/edit", checkPlaceOwner, async (req, res) =>{
 	
 	
 // EDIT - Update Place Info
-router.put("/:id", checkPlaceOwner, (req, res) => {
+router.put("/:id", checkPlaceOwner, async (req, res) => {
 	const updatedInfo = {
 		imagen: req.body.imagen,
 		lugar: req.body.lugar,
@@ -92,23 +97,28 @@ router.put("/:id", checkPlaceOwner, (req, res) => {
 		typeOfPlace: req.body.typeOfPlace
 	};
 	
-	Place.findByIdAndUpdate(req.params.id, updatedInfo, {new: true})
-	.exec()
-	.then((updatedPlace) => {
-		res.redirect(`/places/${req.params.id}`)
-	})
-	.catch((err) => res.send(err))
-})
+	try {
+		const updatedPlace = await Place.findByIdAndUpdate(req.params.id, updatedInfo, {new: true}).exec();
+		req.flash("success", "Place updated");
+		res.redirect(`/places/${req.params.id}`);
+	}catch(err){
+		req.flash("error", "Something went wrong accesing the database. Could not create the place. Please try again");
+		console.log(err);
+		res.redirect("places");
+	}
+});
 
 // DELETE
-router.delete("/:id", checkPlaceOwner, (req,res)=>{
-	Place.findByIdAndDelete(req.params.id)
-	.exec()
-	.then((deletedPlace)=>{
-		// console.log(deletedPlace);
+router.delete("/:id", checkPlaceOwner, async (req,res)=>{
+	try{
+		await Place.findByIdAndDelete(req.params.id).exec();
+		req.flash("success", "Place deleted");
 		res.redirect("/places");
-	})
-	.catch((err)=>res.sen(err))
+	}catch(err){
+		console.log(err);
+		req.flash("error", "Something went wrong accesing the database. Could not delete the place. Please try again");
+		res.redirect("back");
+	}
 })
 
 

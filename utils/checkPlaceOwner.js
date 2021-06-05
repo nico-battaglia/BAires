@@ -8,9 +8,11 @@ const checkPlaceOwner = async (req, res, next)=>{
 		if(place.owner.id.equals(req.user._id)){ //place.owner.id === req.user._id doesnt work. Dif obj types
 			next();
 		} else {
-			res.redirect("back");
+			req.flash("error", "You are not the creator of the place to edit it");
+			res.redirect("/places/"+place._id);
 		}
 	}else{
+		req.flash("error", "You have to log in first");
 		res.redirect("/login");
 	}
 }
