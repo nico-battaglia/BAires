@@ -9,7 +9,7 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			  <li class="nav-item">
-				  <a class="nav-link active" aria-current="page" href="/places">Places</a>
+				  <a class="nav-link" aria-current="page" href="/places">Places</a>
 			  </li>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Types of Places</a>
@@ -26,12 +26,14 @@
 			  </li>
 			  
 			  <% if(user) { %>
-				  <li class="nav-item">
-					  <a class="nav-link" aria-current="page" href="/places/new">Add Place</a>
-				  </li>
-				  <li class="nav-item">
-					  <a class="nav-link" aria-current="page" href="/logout">Log Out</a>
-				  </li>
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="/places/new">Add Place</a>
+			  	</li>
+			  	<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="/logout">
+						Log out <strong><%= user.username %> </strong> 
+					</a>
+				</li>
 			  <% } else { %>
 				  <li class="nav-item">
 					  <a class="nav-link" aria-current="page" href="/login">Log In</a>
@@ -52,7 +54,7 @@
 
 <div class="container mt-2">
 	<% if (errorMessage && errorMessage.length>0) { %> 
-		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			<%= errorMessage %>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
