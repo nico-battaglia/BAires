@@ -14,13 +14,16 @@ router.post("/signup", async (req, res)=>{
 		const newUser = await User.register(
 			new User( {username: req.body.username, email: req.body.email} ), 
 			req.body.password);
+			req.flash("success", `Welcome! Signed you up as ${newUser.username}`);
 		
 		passport.authenticate("local")(req, res, ()=>{
 			res.redirect("/places");
 		})
 	}
 	catch(err){
-		res.send(err)
+		console.log(err);
+		req.flash("error", (err.name === 'MongoError' && err.code === 11000) ? 'Email already exists!': err.message);
+		res.redirect("back");
 	}
 })
 
@@ -32,12 +35,15 @@ router.get("/login", (req, res)=>{
 // LOGIN - Auth
 router.post("/login", passport.authenticate("local", {
 	successRedirect: "/places",
-	failureRedirect: "/login"
+	failureRedirect: "/login",
+	failureFlash: true,
+	successFlash: "Welcome!"
 }));
 
 // LOGOUT
 router.get("/logout", (req, res)=>{
 	req.logout();
+	req.flash("success", `Logged you out`);
 	res.redirect("/places");
 })
 
