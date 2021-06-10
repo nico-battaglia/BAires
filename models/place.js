@@ -8,7 +8,9 @@ const placeSchema = new mongoose.Schema({
 	owner: {
 		id: {type: mongoose.Schema.Types.ObjectId, ref:"User"},
 		username: String
-	}
+	},
+	upvotes: [String],
+	downvotes: [String]
 });
 
 // Indexing all text fields for search bar
