@@ -71,8 +71,9 @@ router.get("/typeOfPlace/:type", async (req, res)=>{
 	}
 	})
 
-// VOTE
-router.post("/vote", isLoggedIn, (req,res)=>{
+// VOTE for place
+router.post("/vote", isLoggedIn, (req, res)=>{
+	console.log(req.body);
 	res.json({
 		message: "Voted!"
 	});
