@@ -71,6 +71,14 @@ router.get("/typeOfPlace/:type", async (req, res)=>{
 	}
 	})
 
+// VOTE
+router.post("/vote", isLoggedIn, (req,res)=>{
+	res.json({
+		message: "Voted!"
+	});
+})
+
+
 // Show Individual Place
 router.get("/:id", async (req,res)=>{
 	try{
