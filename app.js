@@ -54,7 +54,10 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({extended: true})); 
-app.use(methodOverride('_method')) // override with POST having ?_method=DELETE
+app.use(methodOverride('_method')); // override with POST having ?_method=DELETE
+app.use(express.json({
+	type: ["aplication/json", "text/plain"] //CORS- so VOTE route is enable to send json
+}));
 
 // Express Session Config
 app.use(expressSession({
