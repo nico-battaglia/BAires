@@ -1,8 +1,10 @@
-<%- include('./partials/header'); %> <!--  partial included here -->
-
+<!--  partial included here -->
+<%- include('./partials/header'); %> 
 <%- include ("partials/navbar") %>
 
 <div class="container-lg my-2">
+	
+	<!-- 	Show Image and Description of place	 -->
 	<div class="row">
 		<div class="col-md-8 text-center">
 			<img src="<%=place.imagen%>" class="img-fluid max-vh-100" alt="picture of place">
@@ -16,6 +18,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Show edit/delete buttons only if user was the creator	 -->
 	<% if(user && user.username===place.owner.username) {%>
 		<div class="row justify-content-end">
 			<div class="col-md-4 form-inline text-end m-1 ">
@@ -28,21 +32,29 @@
 			</div>
 		</div>
 	<% } %>
-	
 
 	<div class="row align-items-center m-3">
+		
+		<!-- 	Add comment button	 -->
 		<div class="col-6 col-md-3">
 			<a class="btn btn-success btn-sm" href="/places/<%= place._id %>/comments/new">
 				Add Comment
 			</a>	
 		</div>
+		
+		<!-- 	Voting buttons(only if logged in) and score for place	 -->
 		<div class="col text-nowrap">
-			<button id="upvote_btn" class="btn btn-outline-success btn-sm">+</button>
+			<% if (user) { %>
+				<button id="upvote_btn" class="btn btn-outline-success btn-sm">+</button>
+			<% }%>
 			<span id="score" class="mx-2">10</span>
-			<button id="downvote_btn" class="btn btn-outline-danger btn-sm">-</button>
+			<% if (user) { %>
+				<button id="downvote_btn" class="btn btn-outline-danger btn-sm">-</button>
+			<% }%>
 		</div>
 	</div>
 	
+	<!-- Display all comments for this place (Edit/delete button only for user creator of comment)-->
 	<% comments.forEach((comment)=>{ %>
 		<div class="row py-2 border" >
 			<div class="col-2 my-auto border-end">
@@ -50,8 +62,7 @@
 			</div>
 			<div class="col-2 my-auto d-flex flex-wrap justify-content-center border-end">
 			<% if(user && user.username===comment.user.username) { %>
-				<a class="btn btn-sm btn-success w-75 p-0 my-1" 
-				   href="/places/<%=place._id%>/comments/<%=comment._id%>/edit">
+				<a class="btn btn-sm btn-success w-75 p-0 my-1" href="/places/<%=place._id%>/comments/<%=comment._id%>/edit">
 					Edit
 				</a>
 				<form class="w-75 my-0" action="/places/<%= place._id %>/comments/<%= comment._id%>?_method=DELETE" method="POST">
@@ -66,7 +77,12 @@
 			</div>
 		</div>
 	<% }) %>
+	
 	<div class="p-5"></div>
 </div>
 
-<%- include('./partials/footer'); %> <!--  partial included here -->
+<script src="/js/place_show.js"></script>
+
+<!--  partial included here -->
+<%- include('./partials/footer'); %> 
+
