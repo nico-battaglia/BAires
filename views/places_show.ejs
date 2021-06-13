@@ -35,7 +35,7 @@
 
 	<div class="row align-items-center m-3">
 		
-		<!-- 	Add comment button	 -->
+		<!-- 	"Add comment" button	 -->
 		<div class="col-6 col-md-3">
 			<a class="btn btn-success btn-sm" href="/places/<%= place._id %>/comments/new">
 				Add Comment
@@ -60,7 +60,7 @@
 		</div>
 	</div>
 	
-	<!-- Display all comments for this place (Edit/delete button only for user creator of comment)-->
+	<!-- Display all comments for this place (Edit/delete button only if user is creator of comment)-->
 	<% comments.forEach((comment)=>{ %>
 		<div class="row py-2 border" >
 			<div class="col-2 my-auto border-end">
