@@ -87,15 +87,15 @@ router.post("/vote", isLoggedIn, async (req, res)=>{
 		if (req.body.voteType === "up") {
 			place.upvotes.push(req.user.username);
 			place.save();
-			response.message = "Upvoted!";
+			response = {message: "Upvoted!", code: "upvoted"};
 			
 		} else if (req.body.voteType === "down") {
 			place.downvotes.push(req.user.username);
 			place.save();
-			response.message = "Downvoted!";
+			response = {message: "Downvoted!", code: "downvoted"};
 			
 		} else {
-			response.message("Error 1");
+			response = {message: "Error", code: "err"};
 		}
 	//Already upvoted	
 	} else if (alreadyUpvoted>=0) { 
@@ -103,13 +103,13 @@ router.post("/vote", isLoggedIn, async (req, res)=>{
 		if (req.body.voteType === "up") {
 			place.upvotes.splice(alreadyUpvoted, 1);
 			place.save();
-			response.message="Upvote removed";
+			response = {message: "Upvote removed", code: "unvoted"};
 			
 		} else if (req.body.voteType === "down") {
 			place.upvotes.splice(alreadyUpvoted, 1);
 			place.downvotes.push(req.user.username);
 			place.save();
-			response.message="Changed to downvote";
+			response = {message: "Change to downvote", code: "downvoted"};
 		}
 	//Already downvoted
 	} else if (alreadyDownvoted>=0) { 
@@ -118,15 +118,17 @@ router.post("/vote", isLoggedIn, async (req, res)=>{
 			place.downvotes.splice(alreadyDownvoted, 1);
 			place.upvotes.push(req.user.username);
 			place.save();
-			response.message="Changed to upvote";
+			response = {message: "Changed to upvote", code: "upvoted"};
 			
 		} else if (req.body.voteType === "down") {
 			place.downvotes.splice(alreadyUpvoted, 1);
 			place.save();
-			response.message="Downvote removed";
+			response = {message: "Downvote removed", code: "unvoted"};
 		}
 	}
-	res.json(response);
+	
+	response.score = place.upvotes.length - place.downvotes.length
+	res.json(response); //Sending json to update "score" in frontend via place_show(.js & .ejs)
 })
 
 // Show Individual Place

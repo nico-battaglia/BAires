@@ -1,8 +1,9 @@
 // ======================
 // Select elements
 // ======================
-const upvoteBtn = document.getElementById("upvote_btn")
-const downvoteBtn = document.getElementById("downvote_btn")
+const upvoteBtn = document.getElementById("upvote_btn");
+const downvoteBtn = document.getElementById("downvote_btn");
+const score = document.getElementById("score");
 
 // ======================
 // Helper functions
@@ -32,8 +33,29 @@ const sendVote = async (voteType)=> {
 	// 	Send fetch request
 	await fetch("/places/vote", options)
 	.then(data => data.json())
-	.then(res => console.log(res))
+	.then(res => {
+		console.log(res);
+		handleVote(res.score, res.code);
+	})
 	.catch(err => console.log(err))
+}
+
+const handleVote = (newScore, code) => {
+// 	update Score
+	score.innerText = newScore;
+// 	Update button colors
+	if (code === "upvoted") {
+		downvoteBtn.classList.remove("btn-danger");
+		upvoteBtn.classList.add("btn-success");
+	} else if (code === "downvoted") {
+		upvoteBtn.classList.remove("btn-success");
+		downvoteBtn.classList.add("btn-danger");
+	} else if (code === "unvoted") {
+		upvoteBtn.classList.remove("btn-success");
+		downvoteBtn.classList.remove("btn-danger");
+		upvoteBtn.classList.add("btn-outline-success");
+		downvoteBtn.classList.add("btn-outline-danger");
+	}
 }
 
 // ======================
@@ -41,6 +63,7 @@ const sendVote = async (voteType)=> {
 // ======================
 upvoteBtn.addEventListener("click", async function(){
 	sendVote("up");
+
 });
 
 downvoteBtn.addEventListener("click", async function(){

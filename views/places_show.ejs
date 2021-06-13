@@ -44,13 +44,19 @@
 		
 		<!-- 	Voting buttons(only if logged in) and score for place	 -->
 		<div class="col text-nowrap">
-			<% if (user) { %>
+			<% if (user && place.upvotes.indexOf(user.username)>=0) { %>
+				<button id="upvote_btn" class="btn btn-success btn-sm">+</button>
+			<% } else if (user) { %>
 				<button id="upvote_btn" class="btn btn-outline-success btn-sm">+</button>
 			<% }%>
-			<span id="score" class="mx-2">10</span>
-			<% if (user) { %>
+			
+			<span id="score" class="mx-2"><%= place.upvotes.length - place.downvotes.length %></span>
+			<% if (user && place.downvotes.indexOf(user.username)>=0) { %>
+				<button id="downvote_btn" class="btn btn-danger btn-sm">-</button>
+			<% } else if (user) { %>
 				<button id="downvote_btn" class="btn btn-outline-danger btn-sm">-</button>
 			<% }%>
+			
 		</div>
 	</div>
 	
