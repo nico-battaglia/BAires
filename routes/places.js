@@ -72,13 +72,62 @@ router.get("/typeOfPlace/:type", async (req, res)=>{
 	})
 
 // VOTE for place
-router.post("/vote", isLoggedIn, (req, res)=>{
-	console.log(req.body);
-	res.json({
-		message: "Voted!"
-	});
+router.post("/vote", isLoggedIn, async (req, res)=>{
+	const place = await Place.findById(req.body.placeId);
+	
+	const alreadyUpvoted = place.upvotes.indexOf(req.user.username); // -1 if not found
+	const alreadyDownvoted = place.downvotes.indexOf(req.user.username);
+	
+	let response = {};
+	
+	// Voting Logic
+	//not voted
+	if (alreadyUpvoted===-1 && alreadyDownvoted===-1){
+		
+		if (req.body.voteType === "up") {
+			place.upvotes.push(req.user.username);
+			place.save();
+			response.message = "Upvoted!";
+			
+		} else if (req.body.voteType === "down") {
+			place.downvotes.push(req.user.username);
+			place.save();
+			response.message = "Downvoted!";
+			
+		} else {
+			response.message("Error 1");
+		}
+	//Already upvoted	
+	} else if (alreadyUpvoted>=0) { 
+		
+		if (req.body.voteType === "up") {
+			place.upvotes.splice(alreadyUpvoted, 1);
+			place.save();
+			response.message="Upvote removed";
+			
+		} else if (req.body.voteType === "down") {
+			place.upvotes.splice(alreadyUpvoted, 1);
+			place.downvotes.push(req.user.username);
+			place.save();
+			response.message="Changed to downvote";
+		}
+	//Already downvoted
+	} else if (alreadyDownvoted>=0) { 
+		
+		if (req.body.voteType === "up") {
+			place.downvotes.splice(alreadyDownvoted, 1);
+			place.upvotes.push(req.user.username);
+			place.save();
+			response.message="Changed to upvote";
+			
+		} else if (req.body.voteType === "down") {
+			place.downvotes.splice(alreadyUpvoted, 1);
+			place.save();
+			response.message="Downvote removed";
+		}
+	}
+	res.json(response);
 })
-
 
 // Show Individual Place
 router.get("/:id", async (req,res)=>{
