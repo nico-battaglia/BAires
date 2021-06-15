@@ -1,26 +1,22 @@
-<%- include('./partials/header'); %> <!--  partial included here -->
+<!--  partial included here -->
+<%- include('./partials/header'); %> 
+<div class="login-signUp-bgImage">
 <%- include ("partials/navbar") %>
 
-<div class="container-lg my-4">
-	<h1>Sign Up</h1>
-	<form action="/signup" method="POST">
-		<div class="mb-3">
-			<label for="email" class="form-label">Email address</label>
-			<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" autofocus>
+	<div class="container-lg my-4">
+		<div class="col-sm-6">
+			<div class="login-signUp-opacity rounded py-1 my-3 w-50">
+				<h1 class="text-center">Sign Up</h1>
+			</div>
+			<form action="/signup" method="POST">
+				<input type="email" class="form-control mb-3" name="email" id="email" aria-describedby="emailHelp" placeholder="Email address" autofocus>
+				<input type="text" class="form-control mb-3" name="username" id="username" placeholder="Username">
+				<input type="password" class="form-control mb-3" name="password" id="password" placeholder="Password">
+				<button type="submit" class="btn btn-danger w-25">Sign Up</button>
+			</form>
 		</div>
-		
-		<div class="mb-3">
-			<label for="username" class="form-label">Username</label>
-			<input type="text" class="form-control" name="username" id="username">
-		</div>
-		
-		<div class="mb-3">
-			<label for="password" class="form-label">Password</label>
-			<input type="password" class="form-control" name="password" id="password">
-		</div>
-		
-		<button type="submit" class="btn btn-primary">Sign Up</button>
-	</form>
+	</div>
 </div>
 
-<%- include('./partials/footer'); %> <!--  partial included here -->
+<!--  partial included here -->
+<%- include('./partials/footer'); %> 
