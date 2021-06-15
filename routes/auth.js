@@ -3,18 +3,18 @@ const router = express.Router();
 const User = require("../models/user");
 const passport = require("passport");
 
-// SIGN UP - New
+// SIGN UP - Show form
 router.get("/signup", (req, res)=>{
 	res.render("signup");
 })
 
-// SIGNU UP - Create. .register is a Passport func => User.register(new User({}), password)
+// SIGN UP - Create user. '.register' is a Passport func => User.register(new User({}), password)
 router.post("/signup", async (req, res)=>{
 	try{
 		const newUser = await User.register(
 			new User( {username: req.body.username, email: req.body.email} ), 
-			req.body.password);
-			req.flash("success", `Welcome! Signed you up as ${newUser.username}`);
+				req.body.password);
+				req.flash("success", `Welcome! Signed you up as ${newUser.username}`);
 		
 		passport.authenticate("local")(req, res, ()=>{
 			res.redirect("/places");

@@ -12,7 +12,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const expressSession = require("express-session");
 const flash = require('connect-flash');
 
-// Config import
+// Config import (db access and ExpressSession)
 let config;
 try{
 	config = require("./config");
@@ -33,6 +33,7 @@ const authRoutes = require("./routes/auth");
 // DB Seeding
 // const DbSeed = require("./utils/DbSeed");
 // DbSeed();
+
 
 //====================================================
 // CONFIG

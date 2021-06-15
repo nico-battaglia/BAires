@@ -1,9 +1,9 @@
-/* *{
-	border: 1px solid black;
-}
- */
 .opacity{
   background: rgba(205, 221, 237, 0.8);
+}
+
+.login-signUp-opacity{
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .card-img{
@@ -21,11 +21,11 @@
 	overflow: hidden;
 }
 
-.index-bgImage2{
+.login-signUp-bgImage{
 	background-image: url('https://turismo.buenosaires.gob.ar/sites/turismo/files/aerea_9_julio_as_2016_obelisco.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position:left center;
+	background-position: left top;
 	height:100vh;
 	overflow: hidden;
 }

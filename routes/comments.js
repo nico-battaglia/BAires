@@ -6,6 +6,9 @@ const checkCommentOwner = require("../utils/checkCommentOwner");
 // Models
 const Comment = require("../models/comment");
 
+// All routes have as base: "/places/:id/comments"
+// -----------------------------------------------
+
 // New comment - Show Form
 router.get("/new", isLoggedIn, (req,res)=>{
 	res.render("comments_new", {placeId: req.params.id})
@@ -67,6 +70,5 @@ router.delete("/:commentId",  checkCommentOwner, async (req,res)=>{
 		res.redirect("/places/"+req.params.id);
 	}
 })
-
 
 module.exports = router;

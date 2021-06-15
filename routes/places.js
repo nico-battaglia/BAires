@@ -7,6 +7,9 @@ const checkPlaceOwner = require("../utils/checkPlaceOwner");
 const Place = require("../models/place");
 const Comment = require("../models/comment");
 
+// All routes have as base: "/places"
+// -----------------------------------------------
+
 // SHOW all Places
 router.get("/", (req,res)=>{
 	Place.find()
@@ -76,7 +79,7 @@ router.post("/vote", isLoggedIn, async (req, res)=>{
 	const place = await Place.findById(req.body.placeId);
 	
 	const alreadyUpvoted = place.upvotes.indexOf(req.user.username); // -1 if not found
-	const alreadyDownvoted = place.downvotes.indexOf(req.user.username);
+	const alreadyDownvoted = place.downvotes.indexOf(req.user.username); // -1 if not found
 	
 	let response = {};
 	
@@ -149,7 +152,6 @@ router.get("/:id/edit", checkPlaceOwner, async (req, res) =>{
 	res.render("places_edit", {place})
 });
 	
-	
 // EDIT - Update Place Info
 router.put("/:id", checkPlaceOwner, async (req, res) => {
 	const updatedInfo = {
@@ -158,7 +160,6 @@ router.put("/:id", checkPlaceOwner, async (req, res) => {
 		descripcion: req.body.descripcion,
 		typeOfPlace: req.body.typeOfPlace
 	};
-	
 	try {
 		const updatedPlace = await Place.findByIdAndUpdate(req.params.id, updatedInfo, {new: true}).exec();
 		req.flash("success", "Place updated");
@@ -185,3 +186,4 @@ router.delete("/:id", checkPlaceOwner, async (req,res)=>{
 
 
 module.exports = router;
+

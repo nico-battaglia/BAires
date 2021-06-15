@@ -1,4 +1,5 @@
-<%- include('./partials/header'); %> <!--  partial included here -->
+<!--  partial included here -->
+<%- include('./partials/header'); %> 
 <%- include ("partials/navbar") %>
 
 
@@ -6,6 +7,7 @@
 	<div class="row">
 		<div class="col">
 			<h3 class="border-bottom border-dark pb-1">Add New Comment</h3>
+			
 			<form action="/places/<%= placeId %>/comments" method="POST">
 				<div class="row form-group m-3">
 					<label for="text">Comment</label>
@@ -15,8 +17,10 @@
 					<button type="submit" class="btn btn-outline-success">Add</button>
 				</div>
 			</form>
+			
 		</div>
 	</div>
 </div>
 
-<%- include('./partials/footer'); %> <!--  partial included here -->
+<!--  partial included here -->
+<%- include('./partials/footer'); %> 

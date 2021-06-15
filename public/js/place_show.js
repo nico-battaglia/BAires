@@ -12,10 +12,9 @@ const sendVote = async (voteType)=> {
 	// 	Build fetch options
 	const options={
 		method: "POST",
-		headers: {
-      'Content-Type': 'application/json'
-		}	
+		headers: {'Content-Type': 'application/json'}	
 	}
+	
 	if (voteType === "up"){
 		options.body = JSON.stringify({
 			voteType: "up",
@@ -63,7 +62,6 @@ const handleVote = (newScore, code) => {
 // ======================
 upvoteBtn.addEventListener("click", async function(){
 	sendVote("up");
-
 });
 
 downvoteBtn.addEventListener("click", async function(){

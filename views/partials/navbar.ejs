@@ -1,18 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
+	  
+	  <!-- BA icon -->
 	  <a class="navbar-brand my-0 py-0" href="/">
 		  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9CMZK-cREn6UPTLshWBcKVhFFeQ85OXGHZtTnsLDvKDWhaYsbadby8OXVpbQGFRj9MrU&usqp=CAU" height="50">
 	  </a>
+	  
 	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 	  </button>
+	  
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			  
 			  <li class="nav-item">
 				  <a class="nav-link" aria-current="page" href="/places">Places</a>
 			  </li>
+			  
+			  <!-- 	Dropdown Type of Place   -->
 			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Types of Places</a>
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Type of Place</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<li><a class="dropdown-item" href="/places//typeOfPlace/Culture-Architecture">Culture-Architecture</a></li>
 					<li><a class="dropdown-item" href="/places//typeOfPlace/Walk-friendly">Walk-friendly</a></li>
@@ -25,6 +32,7 @@
 				</ul>
 			  </li>
 			  
+			  <!-- Show only if user is logged in -->
 			  <% if(user) { %>
 				<li class="nav-item">
 					<a class="nav-link" aria-current="page" href="/places/new">Add Place</a>
@@ -35,6 +43,7 @@
 					</a>
 				</li>
 			  <% } else { %>
+			  <!-- Show only if user is NOT logged in -->
 				  <li class="nav-item">
 					  <a class="nav-link" aria-current="page" href="/login">Log In</a>
 				  </li>
@@ -44,14 +53,17 @@
 			  <% } %>
 		  </ul>
 		  
+		  <!-- 	Search bar   -->
 		  <form class="d-flex" action="/places/search" method="GET">
 			  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="term">
 			  <button class="btn btn-outline-success" type="submit">Search</button>
 		  </form>
+		  
 	  </div>
 	</div>
 </nav>
 
+<!-- Conditionally render Error or Success message  -->
 <div class="container mt-2">
 	<% if (errorMessage && errorMessage.length>0) { %> 
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
