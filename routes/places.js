@@ -25,11 +25,12 @@ router.get("/new", isLoggedIn, (req,res)=>{
 
 // ADD NEW Place - Update DB
 router.post("/", isLoggedIn, async (req,res)=>{
+	const typeOfPlace = (req.body.typeOfPlace==null)? ["Other"] : req.body.typeOfPlace;
 	const newPlace = {
 		imagen: req.body.imagen,
 		lugar: req.body.lugar,
 		descripcion: req.body.descripcion,
-		typeOfPlace: req.body.typeOfPlace,
+		typeOfPlace: typeOfPlace,
 		owner:{
 			id: req.user._id,
 			username: req.user.username
@@ -64,7 +65,7 @@ router.get("/search", async (req, res)=>{
 
 // Show Places by Type of Place
 router.get("/typeOfPlace/:type", async (req, res)=>{
-	const validTypes=["Culture-Architecture", "Walk-friendly", "Food-Cafe", "Church", "Park", "Shopping"];
+	const validTypes=["Culture-Architecture", "Walk-friendly", "Food-Cafe", "Church", "Park", "Shopping", "Other"];
 	if(validTypes.includes(req.params.type)){
 		const places = await Place.find({typeOfPlace: req.params.type}).exec();
 		res.render("places", {places});
@@ -154,11 +155,12 @@ router.get("/:id/edit", checkPlaceOwner, async (req, res) =>{
 	
 // EDIT - Update Place Info
 router.put("/:id", checkPlaceOwner, async (req, res) => {
+	const typeOfPlace = (req.body.typeOfPlace==null)? ["Other"] : req.body.typeOfPlace;
 	const updatedInfo = {
 		imagen: req.body.imagen,
 		lugar: req.body.lugar,
 		descripcion: req.body.descripcion,
-		typeOfPlace: req.body.typeOfPlace
+		typeOfPlace: typeOfPlace
 	};
 	try {
 		const updatedPlace = await Place.findByIdAndUpdate(req.params.id, updatedInfo, {new: true}).exec();
