@@ -1,12 +1,10 @@
 <%- include('./partials/header'); %> <!--  partial included here -->
 <%- include ("partials/navbar") %>
 
-<!-- <div class="index-bgImage2"> -->
-
 <div class="container my-4">
 	<div class="row">
 		<div class="col">
-			<h3 class="border-bottom border-dark pb-1">Add New Place</h3>
+			<h3 class="border-bottom border-light pb-1">Add New Place</h3>
 			<form action="/places" method="POST">
 				<div class="row form-group m-3">
 					<label for="imagen">Link to Image</label>
@@ -19,7 +17,7 @@
 				<div class="row form-group m-3 ">
 					<label>Type of Place</label>
 					<div class="col text-center">
-							<div class="form-check form-check-inline">
+						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Culture-Architecture" name="typeOfPlace">
 							<label class="form-check-label" for="inlineCheckbox1">Culture-Architecture</label>
 						</div>
@@ -43,6 +41,10 @@
 							<input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="Shopping" name="typeOfPlace">
 							<label class="form-check-label" for="inlineCheckbox6">Shopping</label>
 						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="Other" name="typeOfPlace">
+							<label class="form-check-label" for="inlineCheckbox7">Other</label>
+						</div>
 					</div>
 				</div>
 				<div class="row form-group m-3">
@@ -57,5 +59,5 @@
 	</div>
 </div>
 
-<!-- </div> -->
-<%- include('./partials/footer'); %> <!--  partial included here -->
+<!--  partial included here -->
+<%- include('./partials/footer'); %> 

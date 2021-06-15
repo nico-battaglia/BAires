@@ -1,65 +1,70 @@
-<%- include('./partials/header'); %> <!--  partial included here -->
-  
+<!--  partial included here -->
+<%- include('./partials/header'); %> 
 <%- include ("partials/navbar") %>
 
 <div class="container-lg my-4">
 	<div class="row">
 		<div class="col">
-			<h3 class="border-bottom border-dark pb-1">Edit Info: <%= place.lugar %></h3>
+			<h3 class="border-bottom border-light pb-1">Edit Info: <%= place.lugar %></h3>
+			
 			<form action="/places/<%= place._id %>?_method=PUT" method="POST">
+			
 				<div class="row form-group m-3">
 					<label for="imagen">Link to Image</label>
 					<input type="text" class="form-control text-center" name="imagen" value="<%=place.imagen%>" required>
 				</div>
+				
 				<div class="row form-group m-3">
 					<label for="lugar">Place</label>
 					<input type="text" class="form-control text-center" name="lugar" value="<%=place.lugar%>" required>
 				</div>
+				
 				<div class="row form-group m-3 ">
 					<label>Type of Place</label>
 					<div class="col text-center">
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Culture-Architecture" name="typeOfPlace"
-								   <%= place.typeOfPlace.includes("Culture-Architecture") ? "checked" : "" %>> 
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Culture-Architecture" name="typeOfPlace" <%= place.typeOfPlace.includes("Culture-Architecture") ? "checked" : "" %>> 
 							<label class="form-check-label" for="inlineCheckbox1">Culture-Architecture</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Walk-friendly" name="typeOfPlace" 
-								   <%= place.typeOfPlace.includes("Walk-friendly") ? "checked" : "" %>>
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Walk-friendly" name="typeOfPlace" <%= place.typeOfPlace.includes("Walk-friendly") ? "checked" : "" %>>
 							<label class="form-check-label" for="inlineCheckbox2">Walk-friendly</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Food-Cafe" name="typeOfPlace" 
-								   <%= place.typeOfPlace.includes("Food-Cafe") ? "checked" : "" %>>
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Food-Cafe" name="typeOfPlace" <%= place.typeOfPlace.includes("Food-Cafe") ? "checked" : "" %>>
 							<label class="form-check-label" for="inlineCheckbox3">Food-Cafe</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="Church" name="typeOfPlace" 
-								   <%= place.typeOfPlace.includes("Church") ? "checked" : "" %>>
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="Church" name="typeOfPlace" <%= place.typeOfPlace.includes("Church") ? "checked" : "" %>>
 							<label class="form-check-label" for="inlineCheckbox4">Church</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="Park" name="typeOfPlace" 
-								   <%= place.typeOfPlace.includes("Park") ? "checked" : "" %>>
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="Park" name="typeOfPlace" <%= place.typeOfPlace.includes("Park") ? "checked" : "" %>>
 							<label class="form-check-label" for="inlineCheckbox5">Park</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="Shopping" name="typeOfPlace" 
-								   <%= place.typeOfPlace.includes("Shopping") ? "checked" : "" %>>
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="Shopping" name="typeOfPlace" <%= place.typeOfPlace.includes("Shopping") ? "checked" : "" %>>
 							<label class="form-check-label" for="inlineCheckbox6">Shopping</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="Other" name="typeOfPlace" <%= place.typeOfPlace.includes("Other") ? "checked" : "" %>>
+							<label class="form-check-label" for="inlineCheckbox7">Other</label>
 						</div>
 					</div>
 				</div>
+				
 				<div class="row form-group m-3">
 					<label for="descripcion">Description</label>
 					<textarea type="text" class="form-control" name="descripcion" rows="6" required><%=place.descripcion%></textarea>
 				</div>
-				<div class="row form-group m-3 bg-light">
-					<button type="submit" class="btn btn-outline-success">Edit</button>
+				
+				<div class="row form-group m-3">
+					<button type="submit" class="btn btn-success">Edit</button>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
 
-<%- include('./partials/footer'); %> <!--  partial included here -->
+<!--  partial included here -->
+<%- include('./partials/footer'); %> 
