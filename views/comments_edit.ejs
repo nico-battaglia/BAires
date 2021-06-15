@@ -5,7 +5,7 @@
 <div class="container my-4">
 	<div class="row">
 		<div class="col">
-			<h3 class="border-bottom border-dark pb-1">Edit Comment</h3>
+			<h3 class="border-bottom border-light pb-1">Edit Comment</h3>
 			
 			<!-- 	Prepopulated form to edit	 -->
 			<form action="/places/<%= placeId %>/comments/<%= comment._id%>?_method=PUT" method="POST">
@@ -13,8 +13,8 @@
 					<label for="text">Comment</label>
 					<textarea type="text" rows="8" class="form-control text-center" name="text" autofocus required><%= comment.text %></textarea>
 				</div>
-				<div class="row form-group m-3 bg-light">
-					<button type="submit" class="btn btn-outline-success">Edit</button>
+				<div class="row form-group m-3">
+					<button type="submit" class="btn btn-success">Edit</button>
 				</div>
 			</form>
 			

@@ -2,19 +2,18 @@
 <%- include('./partials/header'); %> 
 <%- include ("partials/navbar") %>
 
-
 <div class="container my-4">
 	<div class="row">
 		<div class="col">
-			<h3 class="border-bottom border-dark pb-1">Add New Comment</h3>
+			<h3 class="border-bottom border-light pb-1">Add New Comment</h3>
 			
 			<form action="/places/<%= placeId %>/comments" method="POST">
 				<div class="row form-group m-3">
 					<label for="text">Comment</label>
 					<textarea type="text" rows="8" class="form-control text-center" name="text" placeholder="Comment here..." required autofocus></textarea>
 				</div>
-				<div class="row form-group m-3 bg-light">
-					<button type="submit" class="btn btn-outline-success">Add</button>
+				<div class="row form-group m-3">
+					<button type="submit" class="btn btn-success">Add</button>
 				</div>
 			</form>
 			
