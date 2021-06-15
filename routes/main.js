@@ -6,8 +6,4 @@ router.get("/", (req,res)=>{
 	res.render("index");
 })
 
-router.get("/account",isLoggedIn, (req,res)=>{
-	res.render("account");
-})
-
 module.exports = router;
