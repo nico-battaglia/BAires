@@ -1,15 +1,30 @@
-.opacity{
-  background: rgba(205, 221, 237, 0.8);
-}
-
-.login-signUp-opacity{
-  background: rgba(255, 255, 255, 0.8);
-}
-
 .card-img{
 	width:100%;
 	height:18rem;
 	object-fit:cover;
+}
+
+.card-text{
+	white-space: pre-wrap;
+}
+
+.img-fluid{
+	max-height: 80vh;
+	}
+
+/* places.ejs */
+.places-limitTextLines {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 6; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
+
+/* index.ejs */
+.index-opacity{
+  background: rgba(205, 221, 237, 0.8);
 }
 
 .index-bgImage{
@@ -21,6 +36,7 @@
 	overflow: hidden;
 }
 
+/* login.ejs */
 .login-signUp-bgImage{
 	background-image: url('https://turismo.buenosaires.gob.ar/sites/turismo/files/aerea_9_julio_as_2016_obelisco.jpg');
 	background-repeat: no-repeat;
@@ -30,16 +46,6 @@
 	overflow: hidden;
 }
 
-.img-fluid{
-	max-height: 80vh;
-	}
-
-.card-text{
-	white-space: pre-wrap;
-}
-
-.form-inline {
-  	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
+.login-signUp-opacity{
+  background: rgba(255, 255, 255, 0.8);
 }
