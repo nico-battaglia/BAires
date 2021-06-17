@@ -22,11 +22,11 @@
 	<!-- Show edit/delete buttons only if user was the creator	 -->
 	<% if(user && user.username===place.owner.username) {%>
 		<div class="row justify-content-end">
-			<div class="col-md-4 form-inline text-end m-1 ">
-				<a href="/places/<%=place._id%>/edit" class="w-25 mx-1">
+			<div class="col-md-4 d-flex m-1 justify-content-end">
+				<a href="/places/<%=place._id%>/edit" class="w-50 mx-1">
 					<button class="btn btn-outline-primary btn-sm w-100">Edit</button>
 				</a>	
-				<form action="/places/<%=place._id%>?_method=DELETE" method="POST"  class="w-25">
+				<form action="/places/<%=place._id%>?_method=DELETE" method="POST"  class="w-50">
 					<button type="submit" class="btn btn-outline-danger btn-sm w-100">Delete</button>
 				</form>	
 			</div>
