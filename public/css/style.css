@@ -23,11 +23,11 @@
 
 /* index.ejs */
 .index-opacity{
-  background: rgba(205, 221, 237, 0.8);
+  background: rgba(205, 221, 237, 0.85);
 }
 
 .index-bgImage{
-	background-image: url('/img/baires-imagen-aerea1920-comp.jpg');
+	background-image: url('/img/baires-index2-min.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position:top center;
