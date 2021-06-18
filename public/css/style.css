@@ -27,12 +27,11 @@
 }
 
 .index-bgImage{
-	background-image: url('/img/baires-imagen-aerea1920.jpg');
+	background-image: url('/img/baires-imagen-aerea1920-comp.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position:top center;
 	height:100vh;
-	overflow: hidden;
 }
 
 /* login.ejs */
