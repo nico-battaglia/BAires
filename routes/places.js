@@ -68,7 +68,7 @@ router.get("/typeOfPlace/:type", async (req, res)=>{
 	const validTypes=["Culture-Architecture", "Walk-friendly", "Food-Cafe", "Church", "Park", "Shopping", "Other"];
 	if(validTypes.includes(req.params.type)){
 		const places = await Place.find({typeOfPlace: req.params.type}).exec();
-		res.render("places", {places});
+		res.render("places", {places, filter: req.params.type});
 	} else {
 		req.flash("error", "Wrong type of place");
 		res.redirect("back");
