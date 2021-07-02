@@ -14,29 +14,57 @@
 				<div class="card-body ">
 					<h5 class="card-title border-bottom border-dark pb-1"><%=place.lugar%></h5>
 					<p class="card-text"><%=place.descripcion%></p>
-				</div>	
+				</div>
+				
+				<!-- Dinamically show typeOfPlace icon -->
+				<ul class="list-group list-group-flush ">
+					<li class="list-group-item d-flex justify-content-evenly">
+						<% if (place.typeOfPlace.includes("Culture-Architecture")){ %>
+							<i class="fas fa-solid fa-landmark fa-lg"></i>
+						<% }%>
+						<% if (place.typeOfPlace.includes("Walk-friendly")){ %>
+							<i class="fas fa-solid fa-walking fa-lg"></i>
+						<% }%>
+						<% if (place.typeOfPlace.includes("Food-Cafe")){ %>
+							<i class="fas fa-solid fa-utensils fa-lg"></i>
+						<% }%>
+						<% if (place.typeOfPlace.includes("Church")){ %>
+							<i class="fas fa-solid fa-church fa-lg"></i>
+						<% }%>
+						<% if (place.typeOfPlace.includes("Park")){ %>
+							<i class="fas fa-solid fa-tree fa-lg"></i>
+						<% }%>
+						<% if (place.typeOfPlace.includes("Shopping")){ %>
+							<i class="fas fa-solid fa-gifts fa-lg"></i>
+						<% }%>
+						<% if (place.typeOfPlace.includes("Other")){ %>
+							<i class="fas fa-solid fa-icons fa-lg"></i>
+						<% }%>
+					</li>
+				</ul>
+				
+			<!-- Show edit/delete buttons only if user was the creator of the place	 -->
+			<% if(user && user.username===place.owner.username) {%>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item d-flex justify-content-evenly py-1 bg-light">
+						<a href="/places/<%=place._id%>/edit" class="w-50 mx-2">
+							<button class="btn btn-outline-primary btn-sm w-100">Edit</button>
+						</a>	
+						<form action="/places/<%=place._id%>?_method=DELETE" method="POST"  class="w-50">
+							<button type="submit" class="btn btn-outline-danger btn-sm w-100">Delete</button>
+						</form>
+					</li>
+				</ul>
+			<% } %>
+				
 			</div>
 		</div>
 	</div>
-	
-	<!-- Show edit/delete buttons only if user was the creator	 -->
-	<% if(user && user.username===place.owner.username) {%>
-		<div class="row justify-content-end">
-			<div class="col-md-4 d-flex m-1 justify-content-end">
-				<a href="/places/<%=place._id%>/edit" class="w-50 mx-1">
-					<button class="btn btn-outline-primary btn-sm w-100">Edit</button>
-				</a>	
-				<form action="/places/<%=place._id%>?_method=DELETE" method="POST"  class="w-50">
-					<button type="submit" class="btn btn-outline-danger btn-sm w-100">Delete</button>
-				</form>	
-			</div>
-		</div>
-	<% } %>
 
 	<div class="row align-items-center m-3">
 		
 		<!-- 	"Add comment" button	 -->
-		<div class="col-6 col-md-3">
+		<div class="col-6 col-md-3 align-self-center">
 			<a class="btn btn-success btn-sm" href="/places/<%= place._id %>/comments/new">
 				Add Comment
 			</a>	
@@ -44,21 +72,45 @@
 		
 		<!-- 	Voting buttons(only if logged in) and score for place	 -->
 		<div class="col text-nowrap">
-			<% if (user && place.upvotes.indexOf(user.username)>=0) { %>
-				<button id="upvote_btn" class="btn btn-success btn-sm">+</button>
-			<% } else if (user) { %>
-				<button id="upvote_btn" class="btn btn-outline-success btn-sm">+</button>
-			<% }%>
-			
-			<span id="score" class="mx-2"><%= place.upvotes.length - place.downvotes.length %></span>
-			<% if (user && place.downvotes.indexOf(user.username)>=0) { %>
-				<button id="downvote_btn" class="btn btn-danger btn-sm">-</button>
-			<% } else if (user) { %>
-				<button id="downvote_btn" class="btn btn-outline-danger btn-sm">-</button>
-			<% }%>
-			
+			<div class="row">
+				<div class="col-md-3 text-center">
+					<% if (user && place.upvotes.indexOf(user.username)>=0) { %>
+						<button id="upvote_btn" class="btn btn-success btn-sm">+</button>
+					<% } else if (user) { %>
+						<button id="upvote_btn" class="btn btn-outline-success btn-sm">+</button>
+					<% }%>
+					
+					<% if (!user){ %>
+						<!-- No user, display buttons without functionality -->
+						<button class="btn btn-outline-success btn-sm"> +</button>
+					<% } %>
+					
+					<!-- Score counter-->
+					<span id="score" class="mx-2"><%= place.upvotes.length - place.downvotes.length %></span>
+					
+					<% if (!user){ %>
+						<button class="btn btn-outline-danger btn-sm">-</button>
+					<% } %>
+					
+					<% if (user && place.downvotes.indexOf(user.username)>=0) { %>
+						<button id="downvote_btn" class="btn btn-danger btn-sm">-</button>
+					<% } else if (user) { %>
+						<button id="downvote_btn" class="btn btn-outline-danger btn-sm">-</button>
+					<% }%>
+					
+				</div>
+			</div>
 		</div>
 	</div>
+	
+	<!-- If !user => Advice you cant comment or vote if not logged in -->
+	<% if (!user){ %>
+		<div class="row mb-2">
+			<div class="col-md-8">
+				<a class="btn btn-outline-secondary btn-sm w-100" href="/login">log in to vote and add a comment</a>	
+			</div>
+		</div>
+	<% } %>
 	
 	<!-- Display all comments for this place (Edit/delete button only if user is creator of comment)-->
 	<% comments.forEach((comment)=>{ %>

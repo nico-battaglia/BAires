@@ -5,6 +5,7 @@ const upvoteBtn = document.getElementById("upvote_btn");
 const downvoteBtn = document.getElementById("downvote_btn");
 const score = document.getElementById("score");
 
+
 // ======================
 // Helper functions
 // ======================
@@ -67,5 +68,4 @@ upvoteBtn.addEventListener("click", async function(){
 downvoteBtn.addEventListener("click", async function(){
 	sendVote("down");
 });
-
 
