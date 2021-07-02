@@ -4,6 +4,8 @@
 
 <div class="container-lg my-4 text-dark">
 	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+		
+		<!-- Displaying each place in a card -->
 		<% places.forEach((place)=>{ %>
 			<div class="col">
 				<a href="/places/<%= place._id %>" class="text-decoration-none text-reset">
@@ -13,6 +15,33 @@
 							<h5 class="card-title border-bottom border-secondary"><%=place.lugar%></h5>
 							<p class="card-text places-limitTextLines"><%=place.descripcion%></p>
 						</div>
+						
+						<!-- Show icons dynamically, according to typeOfPlace -->
+						<ul class="list-group list-group-flush ">
+							<li class="list-group-item d-flex justify-content-evenly">
+								<% if (place.typeOfPlace.includes("Culture-Architecture")){ %>
+									<i class="fas fa-solid fa-landmark"></i>
+								<% }%>
+								<% if (place.typeOfPlace.includes("Walk-friendly")){ %>
+									<i class="fas fa-solid fa-walking"></i>
+								<% }%>
+								<% if (place.typeOfPlace.includes("Food-Cafe")){ %>
+									<i class="fas fa-solid fa-utensils"></i>
+								<% }%>
+								<% if (place.typeOfPlace.includes("Church")){ %>
+									<i class="fas fa-solid fa-church"></i>
+								<% }%>
+								<% if (place.typeOfPlace.includes("Park")){ %>
+									<i class="fas fa-solid fa-tree"></i>
+								<% }%>
+								<% if (place.typeOfPlace.includes("Shopping")){ %>
+									<i class="fas fa-solid fa-gifts"></i>
+								<% }%>
+								<% if (place.typeOfPlace.includes("Other")){ %>
+									<i class="fas fa-solid fa-icons"></i>
+								<% }%>
+							</li>
+						</ul>
 					</div>
 				</a>
 			</div>

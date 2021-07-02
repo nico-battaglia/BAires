@@ -12,24 +12,74 @@
 	  
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-			  
 			  <li class="nav-item">
 				  <a class="nav-link" aria-current="page" href="/places">Places</a>
 			  </li>
 			  
 			  <!-- 	Dropdown Type of Place   -->
 			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Type of Place</a>
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					
+					<!-- If filtered by typeOfPlace show filter subject in button -->
+					<% if (typeof filter !== 'undefined' && filter!=null) { %>
+						<b><%=filter%></b>
+					<%} else {%>
+						<%="Type of Place"%>
+					<%}%>
+				</a>
+				
+				<!-- Options of typeOfPlace -->
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="/places//typeOfPlace/Culture-Architecture">Culture-Architecture</a></li>
-					<li><a class="dropdown-item" href="/places/typeOfPlace/Walk-friendly">Walk-friendly</a></li>
-					<li><a class="dropdown-item" href="/places/typeOfPlace/Food-Cafe">Food-Cafe</a></li>
-					<li><a class="dropdown-item" href="/places/typeOfPlace/Church">Church</a></li>
-					<li><a class="dropdown-item" href="/places/typeOfPlace/Park">Park</a></li>
-					<li><a class="dropdown-item" href="/places/typeOfPlace/Shopping">Shopping</a></li>
-					<li><a class="dropdown-item" href="/places/typeOfPlace/Other">Other</a></li>
+					<li>
+						<a class="dropdown-item" href="/places//typeOfPlace/Culture-Architecture">
+							<i class="fas fa-solid fa-landmark col-2 text-center"></i> 
+							<span class="col-10 px-1">Culture-Architecture</span>
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/places/typeOfPlace/Walk-friendly">
+							<i class="fas fa-solid fa-walking col-2 text-center"></i> 
+							<span class="col-10 px-1">Walk-friendly</span>
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/places/typeOfPlace/Food-Cafe">
+							<i class="fas fa-solid fa-utensils col-2 text-center"></i> 
+							<span class="col-10 px-1">Food-Cafe</span>
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/places/typeOfPlace/Church">
+							<i class="fas fa-solid fa-church col-2 text-center"></i> 
+							<span class="col-10 px-1">Church</span>
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/places/typeOfPlace/Park">
+							<i class="fas fa-solid fa-tree col-2 text-center"></i> 
+							<span class="col-10 px-1">Park</span>
+						</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="/places/typeOfPlace/Shopping">
+							<i class="fas fa-solid fa-gifts col-2 text-center"></i> 
+							<span class="col-10 px-1">Shopping</span>
+						</a>
+					</li>
+					<li><a class="dropdown-item" href="/places/typeOfPlace/Other">
+						<i class="fas fa-solid fa-icons col-2 text-center"></i> 
+						<span class="col-10 px-1">Other</span>
+						</a>
+					</li>
 					<li><hr class="dropdown-divider"></li>
-					<li><a class="dropdown-item" href="/places">All</a></li>
+					<li>
+						<a class="dropdown-item" href="/places">
+							<div class="row">
+								<div class="col-2"></div>
+								<div class="col-10 px-4">All</div>
+							</div>
+						</a>
+					</li>
 				</ul>
 			  </li>
 			  
