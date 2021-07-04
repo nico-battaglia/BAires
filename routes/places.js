@@ -31,6 +31,7 @@ router.post("/", isLoggedIn, async (req,res)=>{
 		lugar: req.body.lugar,
 		descripcion: req.body.descripcion,
 		typeOfPlace: typeOfPlace,
+		address: req.body.address,
 		owner:{
 			id: req.user._id,
 			username: req.user.username
@@ -133,6 +134,12 @@ router.post("/vote", isLoggedIn, async (req, res)=>{
 	
 	response.score = place.upvotes.length - place.downvotes.length
 	res.json(response); //Sending json to update "score" in frontend via place_show(.js & .ejs)
+})
+
+// Redirecting to Login if try voting without Login (href in + or - buttons without Login in places/:id)
+router.get("/vote", (req, res)=>{
+	req.flash("error", "You have to log in first");
+	res. redirect("/login");
 })
 
 // Show Individual Place
