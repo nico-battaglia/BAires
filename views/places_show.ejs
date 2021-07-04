@@ -16,8 +16,10 @@
 					<p class="card-text"><%=place.descripcion%></p>
 				</div>
 				
-				<!-- Dinamically show typeOfPlace icon -->
 				<ul class="list-group list-group-flush ">
+					<li class="list-group-item">Address: <%= place.address %></li>	
+				
+					<!-- Dinamically show typeOfPlace icon -->
 					<li class="list-group-item d-flex justify-content-evenly">
 						<% if (place.typeOfPlace.includes("Culture-Architecture")){ %>
 							<i class="fas fa-solid fa-landmark fa-lg"></i>
@@ -82,14 +84,14 @@
 					
 					<% if (!user){ %>
 						<!-- No user, display buttons without functionality -->
-						<button class="btn btn-outline-success btn-sm"> +</button>
+						<a class="btn btn-outline-success btn-sm" href="/places/vote"> +</a>
 					<% } %>
 					
 					<!-- Score counter-->
 					<span id="score" class="mx-2"><%= place.upvotes.length - place.downvotes.length %></span>
 					
 					<% if (!user){ %>
-						<button class="btn btn-outline-danger btn-sm">-</button>
+						<a class="btn btn-outline-danger btn-sm" href="/places/vote">-</a>
 					<% } %>
 					
 					<% if (user && place.downvotes.indexOf(user.username)>=0) { %>
@@ -107,7 +109,7 @@
 	<% if (!user){ %>
 		<div class="row mb-2">
 			<div class="col-md-8">
-				<a class="btn btn-outline-secondary btn-sm w-100" href="/login">log in to vote and add a comment</a>	
+				<a class="btn btn-outline-secondary btn-sm w-100" href="/login">log in to vote and add a comment</a>
 			</div>
 		</div>
 	<% } %>
