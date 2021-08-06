@@ -70,4 +70,3 @@ upvoteBtn.addEventListener("click", async function(){
 downvoteBtn.addEventListener("click", async function(){
 	sendVote("down");
 });
-
