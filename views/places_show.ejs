@@ -77,9 +77,9 @@
 			<div class="row">
 				<div class="col-md-3 text-center">
 					<% if (user && place.upvotes.indexOf(user.username)>=0) { %>
-						<button id="upvote_btn" class="btn btn-success btn-sm">+</button>
+						<button id="upvote_btn" class="btn btn-success btn-sm text-white">+</button>
 					<% } else if (user) { %>
-						<button id="upvote_btn" class="btn btn-outline-success btn-sm">+</button>
+						<button id="upvote_btn" class="btn btn-outline-success btn-sm text-white">+</button>
 					<% }%>
 					
 					<% if (!user){ %>
@@ -95,9 +95,9 @@
 					<% } %>
 					
 					<% if (user && place.downvotes.indexOf(user.username)>=0) { %>
-						<button id="downvote_btn" class="btn btn-danger btn-sm">-</button>
+						<button id="downvote_btn" class="btn btn-danger btn-sm text-white">-</button>
 					<% } else if (user) { %>
-						<button id="downvote_btn" class="btn btn-outline-danger btn-sm">-</button>
+						<button id="downvote_btn" class="btn btn-outline-danger btn-sm text-white">-</button>
 					<% }%>
 					
 				</div>

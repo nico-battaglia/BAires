@@ -46,9 +46,11 @@ const handleVote = (newScore, code) => {
 // 	Update button colors
 	if (code === "upvoted") {
 		downvoteBtn.classList.remove("btn-danger");
+		downvoteBtn.classList.add("btn-outline-danger");
 		upvoteBtn.classList.add("btn-success");
 	} else if (code === "downvoted") {
 		upvoteBtn.classList.remove("btn-success");
+		upvoteBtn.classList.add("btn-outline-success");
 		downvoteBtn.classList.add("btn-danger");
 	} else if (code === "unvoted") {
 		upvoteBtn.classList.remove("btn-success");
