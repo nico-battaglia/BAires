@@ -10,5 +10,3 @@ Stack used:
 - User auth with Passport
 - MongoDB as the database
 - Frontend using EJS template as the view engine and Bootstrap for styling
-
-### [Live project Here](https://lovely-duck-tuxedo.cyclic.app/)
